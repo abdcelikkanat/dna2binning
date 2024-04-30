@@ -1,4 +1,36 @@
-# DNABERT_S: Learning Species-Aware DNA Embedding with Genome Foundation Models
+## Modified Version of the DNABERT-S repository
+
+#### Changelog:
+- KMedoid and compute_class_center_medium_similarity methods have been updated to support the l2 and l1 distances.
+- The similarity is defined as exp(-d) where "d" indicates the distance between the embeddings of the sequences.
+- get_embedding method has been updated to move the normalization step of the embeddings inside the if statements.
+- The original code can be found at eval_binning.py and utils.py files.
+- In Lines 209-210 of the modified_utils.py file, the code "model.to("cpu"); n_gpu = 1" was added to run the script on a CPU.
+
+#### How to run
+
+- In order to perform the experiment for the TNF model (i.e. the model using the normalized k-mer profiles with l2 distance instead of the cosine similarity )
+```
+python evaluate/modified_eval_binning.py --species reference --output ./output.txt --model_list tnf --data_dir ./external_files/dataset
+```
+- For the other models such as DNABERT-2 and DNABERT-S, we also need to specify the trained model paths.
+```
+python evaluate/modified_eval_binning.py --species reference --output ./output.txt --model_list dnabert2 --data_dir external_files/dataset --test_model_dir ./external_files/models/DNABERT-S/
+```
+**Note:** The DNABERT-S model corresponds to the "test" option.
+
+**Very Important** 
+- If the script cannot find the embeddings, then it computes and saves them in the folder ./embeddings/{species}/{task_name_ID}/{model_name}.npy
+- The model file names and the directories are defined in the "get_embedding" method of the utils.py file. 
+- Therefore, if the model architecture is modified, these files must be removed because the script will load the existing embeddings instead of recomputing them.
+- For the DNABERT-2 model
+
+---
+
+##### The original README.md file is below.
+
+---
+## DNABERT_S: Learning Species-Aware DNA Embedding with Genome Foundation Models
 
 
 
