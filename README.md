@@ -1,13 +1,13 @@
 ## Modified Version of the DNABERT-S repository
 
-#### Changelog:
+### Changelog:
 - KMedoid and compute_class_center_medium_similarity methods have been updated to support the l2 and l1 distances.
 - The similarity is defined as exp(-d) where "d" indicates the distance between the embeddings of the sequences.
 - get_embedding method has been updated to move the normalization step of the embeddings inside the if statements.
 - The original code can be found at eval_binning.py and utils.py files.
 - In Lines 209-210 of the modified_utils.py file, the code "model.to("cpu"); n_gpu = 1" was added to run the script on a CPU.
 
-#### How to run
+### How to run
 
 - In order to perform the experiment for the TNF model (i.e. the model using the normalized k-mer profiles with l2 distance instead of the cosine similarity )
 ```
@@ -24,6 +24,27 @@ python evaluate/modified_eval_binning.py --species reference --output ./output.t
 - The model file names and the directories are defined in the "get_embedding" method of the utils.py file. 
 - Therefore, if the model architecture is modified, these files must be removed because the script will load the existing embeddings instead of recomputing them.
 - For the DNABERT-2 model
+
+### External files: the trained models and datasets
+This folder contains external files that can be downloaded by following the steps below:
+
+##### The pre-trained models
+```
+gdown 1ejNOMXdycorDzphLT6jnfGIPUxi6fO0g # pip install gdown
+unzip dnabert-s_train.zip  # unzip the data
+```
+
+##### The training data
+```
+gdown 1p59ch_MO-9DXh3LUIvorllPJGLEAwsUp # pip install gdown
+unzip dnabert-s_train.zip  # unzip the data
+```
+
+##### The evaluation data
+```
+gdown 1I44T2alXrtXPZrhkuca6QP3tFHxDW98c # pip install gdown
+unzip dnabert-s_eval.zip  # unzip the data
+```
 
 ---
 
